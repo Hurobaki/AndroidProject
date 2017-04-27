@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/goToAlerts"
+        android:icon="@drawable/ic_alerts"
+        app:showAsAction="ifRoom"
+        android:onClick="onGoToAlerts"
+        android:title="Alerts">
+    </item>
+    <item
+        android:id="@+id/goToFriends"
+        android:icon="@drawable/ic_friends"
+        android:onClick="onGoToFriends"
+        app:showAsAction="ifRoom|withText"
+        android:title="Friends">
+    </item>
+</menu>
