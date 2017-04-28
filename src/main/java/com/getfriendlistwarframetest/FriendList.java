@@ -198,9 +198,6 @@ public class FriendList extends ListActivity {
 
             layout.setVisibility(View.GONE);
         }
-
-
     }
-
 }
 

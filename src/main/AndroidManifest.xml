@@ -21,12 +21,8 @@
         </activity>
         <activity android:name=".FriendList" />
 
-        <service
-            android:name=".AlertExpired"
-            android:enabled="true"
-            android:exported="true" />
+        <activity android:name=".LookForFriends" />
 
-        <activity android:name=".LookForFriends"></activity>
     </application>
 
 </manifest>

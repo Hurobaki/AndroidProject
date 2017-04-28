@@ -9,20 +9,12 @@ import java.util.concurrent.TimeUnit;
 public class AlerteWarframe {
     private long activation;
     private long expiry;
-    private String timeLeft;
+    private long timeLeft;
     private String missionType;
     private String faction;
     private int credits;
     private String item;
     private int quantity_item=1;
-
-    public String getTimeLeft() {
-        return timeLeft;
-    }
-
-    public void setTimeLeft(String timeLeft) {
-        this.timeLeft = timeLeft;
-    }
 
     @Override
     public String toString() {
@@ -39,10 +31,7 @@ public class AlerteWarframe {
 
     public void calculateTimeLeft()
     {
-        timeLeft = String.format("%d min %d sec",
-                TimeUnit.MILLISECONDS.toMinutes(expiry-System.currentTimeMillis()),
-                TimeUnit.MILLISECONDS.toSeconds(expiry-System.currentTimeMillis())-TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(expiry-System.currentTimeMillis()))
-        );
+        timeLeft=expiry-System.currentTimeMillis();
     }
 
     //Because the names are ids, we split each of them into tokens and only keep what is interesting for the user
@@ -57,6 +46,13 @@ public class AlerteWarframe {
 
     }
 
+    public long getTimeLeft() {
+        return timeLeft;
+    }
+
+    public void setTimeLeft(long timeLeft) {
+        this.timeLeft = timeLeft;
+    }
 
     public long getActivation() {
         return activation;

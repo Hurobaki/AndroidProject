@@ -1,5 +1,6 @@
 package com.getfriendlistwarframetest;
 
+import android.os.CountDownTimer;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Chocobouc on 27/04/2017.
@@ -23,11 +25,26 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         AlerteWarframe alert = alerts.get(position);
         holder.credits.setText("Credits:"+alert.getCredits());
         holder.faction.setText("Faction:"+alert.getFaction());
         holder.timeLeft.setText("Time left:"+alert.getTimeLeft());
+
+        new CountDownTimer(alert.getTimeLeft(), 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                holder.timeLeft.setText(""+String.format("%d min, %d sec",
+                        TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+            }
+
+            public void onFinish() {
+                holder.timeLeft.setText("done!");
+            }
+        }.start();
+
         holder.missionType.setText("Mission:"+alert.getMissionType());
         if (alert.getItem()!=null)
             holder.reward.setText("Reward: "+alert.getItem()+" x "+alert.getQuantity_item());

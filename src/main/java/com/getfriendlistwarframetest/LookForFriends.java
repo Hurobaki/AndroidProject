@@ -19,30 +19,33 @@ public class LookForFriends extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // inflate the menu icons
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+        // menu icons on click
     public void onGoToAlerts(MenuItem mi) {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
     public void onGoToFriends(MenuItem mi) {
         startActivity(new Intent(getApplicationContext(), LookForFriends.class));
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_look_for_friends);
+        // We store the last entered steam id in the preferences
         final EditText steamId = (EditText) findViewById(R.id.steamId);
         sharedPref = getSharedPreferences("myPref", Context.MODE_PRIVATE);
         steamId.setText(sharedPref.getString("last_search",""), TextView.BufferType.EDITABLE);
         Button findFriends = (Button) findViewById(R.id.buttonFriend);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setSubtitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+
         findFriends.setOnClickListener(new View.OnClickListener(){
 
             @Override
